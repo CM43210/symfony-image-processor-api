@@ -38,5 +38,19 @@ services:
     environment:
       APP_ENV: dev
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_USER: root
+      PMA_PASSWORD: root
+      PMA_HOST: db
+      PMA_PORT: 3306
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
 volumes:
   symfony_var:
