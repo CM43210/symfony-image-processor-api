@@ -7,7 +7,6 @@ namespace App\Infrastructure\Persistence\Doctrine\Type;
 use App\Core\Image\Domain\ImageId;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
-use Symfony\Component\Uid\Uuid;
 
 final class ImageIdType extends Type
 {

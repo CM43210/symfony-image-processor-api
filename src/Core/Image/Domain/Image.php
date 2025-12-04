@@ -14,10 +14,8 @@ final class Image
         #[ORM\Id]
         #[ORM\Column(type: 'image_id')]
         private ImageId $id,
-        
         #[ORM\Embedded(class: ImageFile::class, columnPrefix: false)]
         private ImageFile $originalFile,
-        
         #[ORM\Column(type: 'datetime_immutable', name: 'uploaded_at')]
         private \DateTimeImmutable $uploadedAt,
     ) {
