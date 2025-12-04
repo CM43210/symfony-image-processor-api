@@ -64,6 +64,7 @@ final readonly class RedisImageProcessingTracker implements ImageProcessingTrack
         $data = json_decode($json, true);
         $data['status'] = ProcessingStatus::COMPLETED->value;
         $data['progress'] = 100;
+        $data['message'] = null;
         $data['finished_at'] = (new \DateTimeImmutable())->format(\DATE_ATOM);
 
         $this->redis->set($this->key($id), json_encode($data));
