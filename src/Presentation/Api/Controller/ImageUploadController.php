@@ -16,9 +16,9 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ImageUploadController extends AbstractController
 {
     public function __construct(
-        private readonly UploadImage $uploadImage,
-        private readonly DtoValidator $validator,
-        private readonly ApiResponder $responder
+        private UploadImage $uploadImage,
+        private DtoValidator $validator,
+        private ApiResponder $responder
     ) {
     }
 

@@ -25,3 +25,11 @@ services:
         class: App\Infrastructure\Bus\MessengerAsyncCommandBus
         arguments:
             $bus: '@messenger.default_bus'
+
+    App\Core\Image\Application\Port\ImageStorageInterface:
+        class: App\Infrastructure\Storage\LocalImageStorage
+        arguments:
+            $projectDir: '%kernel.project_dir%'
+
+    App\Core\Image\Application\Port\ImageRepositoryInterface:
+        class: App\Core\Image\Application\Repository\InMemoryImageRepository
