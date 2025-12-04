@@ -8,7 +8,7 @@ use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 
 return ECSConfig::configure()
-    ->withPaths(paths: [__DIR__.'/src'])
+    ->withPaths(paths: [__DIR__.'/src', __DIR__.'/tests'])
     ->withEditorConfig()
     ->withSets([
         SetList::PSR_12,
