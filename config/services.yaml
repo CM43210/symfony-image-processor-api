@@ -30,3 +30,9 @@ services:
         class: App\Infrastructure\Storage\LocalImageStorage
         arguments:
             $projectDir: '%kernel.project_dir%'
+
+    App\Core\Image\Application\Port\TempImageStorage:
+        class: App\Infrastructure\Image\Storage\LocalTempImageStorage
+        arguments:
+            $tmpUploadDir: '%kernel.project_dir%/var/tmp/uploads'
+

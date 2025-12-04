@@ -30,10 +30,16 @@ final readonly class UploadImageHandler
             $command->format,
             $command->sizeInBytes
         );
+        
+        $storedPath = $this->storage->store($imageFile, $command->originalName);
+        
+        $finalImageFile = ImageFile::create(
+            $storedPath,
+            $command->format,
+            $command->sizeInBytes
+        );
 
-        $image = Image::upload($imageId, $imageFile);
-
-        $this->storage->store($imageFile, $command->originalName);
+        $image = Image::upload($imageId, $finalImageFile);
 
         $this->repository->save($image);
 

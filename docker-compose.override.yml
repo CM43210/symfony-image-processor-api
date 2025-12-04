@@ -7,6 +7,8 @@ services:
       COMPOSER_ALLOW_SUPERUSER: 1
       XDEBUG_MODE: develop,debug
       XDEBUG_CONFIG: client_host=host.docker.internal client_port=9003
+      MESSENGER_TRANSPORT_DSN: redis://redis:6379/messages
+      DATABASE_URL: mysql://symfony:symfony@db:3306/app?serverVersion=8.4&charset=utf8mb4
     build:
       context: .
       dockerfile: docker/php/Dockerfile
@@ -28,6 +30,8 @@ services:
       APP_ENV: dev
       APP_DEBUG: 1
       COMPOSER_ALLOW_SUPERUSER: 1
+      MESSENGER_TRANSPORT_DSN: redis://redis:6379/messages
+      DATABASE_URL: mysql://symfony:symfony@db:3306/app?serverVersion=8.4&charset=utf8mb4
     volumes:
       - ./:/var/www:delegated
       - symfony_var:/var/www/var

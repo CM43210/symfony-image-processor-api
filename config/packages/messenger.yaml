@@ -9,11 +9,14 @@ framework:
                     max_retries: 3
                     delay: 1000
                     multiplier: 2
-            failed: '%env(MESSENGER_TRANSPORT_DSN)%?queue_name=failed'
+            failed:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    stream: failed
 
         routing:
             # Route your messages to the transports
-            # 'App\Message\YourMessage': async
+            'App\Core\Image\Application\Command\UploadImageCommand': async
 
 # when@test:
 #    framework:
