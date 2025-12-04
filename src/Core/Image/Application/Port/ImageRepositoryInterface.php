@@ -1,0 +1,14 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Core\Image\Application\Port;
+
+use App\Core\Image\Domain\Image;
+use App\Core\Image\Domain\ImageId;
+
+interface ImageRepositoryInterface
+{
+    public function save(Image $image): void;
+    public function findById(ImageId $id): ?Image;
+}
