@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
-use App\Core\Image\Application\Port\ImageRepositoryInterface;
+use App\Core\Image\Application\Port\ImageRepository as ImageRepositoryPort;
 use App\Core\Image\Domain\Image;
 use App\Core\Image\Domain\ImageId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -13,7 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<Image>
  */
-final class ImageRepository extends ServiceEntityRepository implements ImageRepositoryInterface
+final class ImageRepository extends ServiceEntityRepository implements ImageRepositoryPort
 {
     public function __construct(ManagerRegistry $registry)
     {

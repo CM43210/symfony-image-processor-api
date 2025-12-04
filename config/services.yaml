@@ -26,7 +26,7 @@ services:
         arguments:
             $bus: '@messenger.default_bus'
 
-    App\Core\Image\Application\Port\ImageStorageInterface:
+    App\Core\Image\Application\Port\ImageStorage:
         class: App\Infrastructure\Storage\LocalImageStorage
         arguments:
             $projectDir: '%kernel.project_dir%'

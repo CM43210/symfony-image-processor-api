@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Infrastructure\Storage;
 
 use App\Core\Image\Application\Port\ArchiveStorage;
-use App\Core\Image\Application\Port\ImageRepositoryInterface;
+use App\Core\Image\Application\Port\ImageRepository;
 use App\Core\Image\Application\View\ProcessedImageDownload;
 use App\Core\Image\Domain\ImageId;
 
 final readonly class LocalArchiveStorage implements ArchiveStorage
 {
     public function __construct(
-        private ImageRepositoryInterface $repository,
+        private ImageRepository $repository,
         private string $archiveDir,
     ) {
     }

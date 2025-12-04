@@ -6,8 +6,8 @@ namespace App\Core\Image\Application\Handler;
 
 use App\Core\Image\Application\Command\ProcessImageCommand;
 use App\Core\Image\Application\Command\UploadImageCommand;
-use App\Core\Image\Application\Port\ImageRepositoryInterface;
-use App\Core\Image\Application\Port\ImageStorageInterface;
+use App\Core\Image\Application\Port\ImageRepository;
+use App\Core\Image\Application\Port\ImageStorage;
 use App\Core\Image\Domain\Image;
 use App\Core\Image\Domain\ImageFile;
 use App\Core\Image\Domain\ImageId;
@@ -18,8 +18,8 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 final readonly class UploadImageHandler
 {
     public function __construct(
-        private ImageStorageInterface $storage,
-        private ImageRepositoryInterface $repository,
+        private ImageStorage $storage,
+        private ImageRepository $repository,
         private AsyncCommandBus $commandBus,
     ) {
     }

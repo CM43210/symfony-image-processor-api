@@ -7,7 +7,7 @@ namespace App\Core\Image\Application\Handler;
 use App\Core\Image\Application\Command\ProcessImageCommand;
 use App\Core\Image\Application\Port\ImageProcessingTracker;
 use App\Core\Image\Application\Port\ImageProcessor;
-use App\Core\Image\Application\Port\ImageRepositoryInterface;
+use App\Core\Image\Application\Port\ImageRepository;
 use App\Core\Image\Domain\ImageId;
 use App\Core\Shared\Application\Port\Logger;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
@@ -16,7 +16,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 final readonly class ProcessImageHandler
 {
     public function __construct(
-        private ImageRepositoryInterface $repository,
+        private ImageRepository $repository,
         private ImageProcessor $processor,
         private ImageProcessingTracker $tracker,
         private Logger $logger,

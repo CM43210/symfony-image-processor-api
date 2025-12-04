@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Storage;
 
-use App\Core\Image\Application\Port\ImageStorageInterface;
+use App\Core\Image\Application\Port\ImageStorage;
 use App\Core\Image\Domain\Image;
 use App\Core\Image\Domain\ImageFile;
 use Symfony\Component\Filesystem\Filesystem;
 
-final class LocalImageStorage implements ImageStorageInterface
+final class LocalImageStorage implements ImageStorage
 {
     private string $storageDir;
     private Filesystem $filesystem;
