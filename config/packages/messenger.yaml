@@ -17,6 +17,7 @@ framework:
         routing:
             # Route your messages to the transports
             'App\Core\Image\Application\Command\UploadImageCommand': async
+            'App\Core\Image\Application\Command\ProcessImageCommand': async
 
 # when@test:
 #    framework:
