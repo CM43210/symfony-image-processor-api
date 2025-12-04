@@ -64,7 +64,10 @@ final class GdImageProcessor implements ImageProcessor
         imagecopyresampled(
             $destination,
             $source,
-            0, 0, 0, 0,
+            0,
+            0,
+            0,
+            0,
             $newWidth,
             $newHeight,
             $width,

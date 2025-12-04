@@ -36,3 +36,15 @@ services:
         arguments:
             $tmpUploadDir: '%kernel.project_dir%/var/tmp/uploads'
 
+    App\Core\Image\Application\Port\ImageProcessor:
+        class: App\Infrastructure\Image\Processing\GdImageProcessor
+
+    App\Core\Shared\Application\Port\Logger:
+        class: App\Infrastructure\Logging\MonologAdapter
+        arguments:
+            $monolog: '@logger'
+
+    App\Core\Image\Application\Handler\ProcessImageHandler:
+        arguments:
+            $storageDir: '%kernel.project_dir%/var/storage/images'
+            $archiveDir: '%kernel.project_dir%/var/storage/archives'

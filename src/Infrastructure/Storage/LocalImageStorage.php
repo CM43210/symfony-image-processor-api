@@ -46,7 +46,7 @@ final class LocalImageStorage implements ImageStorageInterface
             throw new \RuntimeException('Failed to store image file: ' . $e->getMessage(), 0, $e);
         }
 
-        return $destinationPath;
+        return $finalFilename;
     }
 
     public function retrieve(Image $image): string
