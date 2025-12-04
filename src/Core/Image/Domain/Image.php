@@ -18,6 +18,8 @@ final class Image
         private ImageFile $originalFile,
         #[ORM\Column(type: 'datetime_immutable', name: 'uploaded_at')]
         private \DateTimeImmutable $uploadedAt,
+        #[ORM\Column(type: 'string', nullable: true, name: 'processed_archive_path')]
+        private ?string $processedArchivePath = null,
     ) {
     }
 
@@ -43,5 +45,15 @@ final class Image
     public function uploadedAt(): \DateTimeImmutable
     {
         return $this->uploadedAt;
+    }
+
+    public function processedArchivePath(): ?string
+    {
+        return $this->processedArchivePath;
+    }
+
+    public function setProcessedArchive(string $archivePath): void
+    {
+        $this->processedArchivePath = $archivePath;
     }
 }
