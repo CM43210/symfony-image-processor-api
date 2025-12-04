@@ -56,6 +56,7 @@ final readonly class ProcessImageHandler
 
         try {
             $this->tracker->updateProgress($imageId, 10, 'Removing metadata');
+            $this->artificialDelay();
             $originalName = 'original.' . $image->originalFile()->format()->extension();
             $cleanOriginalPath = $workDir . '/' . $originalName;
             copy($originalPath, $cleanOriginalPath);
@@ -63,21 +64,25 @@ final readonly class ProcessImageHandler
             $this->logger->debug('Removed metadata from original', ['imageId' => $command->imageId]);
 
             $this->tracker->updateProgress($imageId, 30, 'Generating thumbnail');
+            $this->artificialDelay();
             $thumbnailPath = $workDir . '/thumbnail.webp';
             $this->processor->resize($originalPath, $thumbnailPath, 300, 300, 80);
             $this->logger->info('Generated thumbnail variant', ['imageId' => $command->imageId]);
 
             $this->tracker->updateProgress($imageId, 50, 'Generating medium variant');
+            $this->artificialDelay();
             $mediumPath = $workDir . '/medium.webp';
             $this->processor->resize($originalPath, $mediumPath, 800, 800, 85);
             $this->logger->info('Generated medium variant', ['imageId' => $command->imageId]);
 
             $this->tracker->updateProgress($imageId, 70, 'Generating large variant');
+            $this->artificialDelay();
             $largePath = $workDir . '/large.webp';
             $this->processor->resize($originalPath, $largePath, 1920, 1920, 90);
             $this->logger->info('Generated large variant', ['imageId' => $command->imageId]);
 
             $this->tracker->updateProgress($imageId, 90, 'Creating archive');
+            $this->artificialDelay();
             $archiveName = $command->imageId . '.zip';
             $archivePath = $this->archiveDir . '/' . $archiveName;
 
@@ -113,6 +118,11 @@ final readonly class ProcessImageHandler
         } finally {
             $this->cleanupDirectory($workDir);
         }
+    }
+
+    private function artificialDelay(): void
+    {
+        sleep(4);
     }
 
     private function cleanupDirectory(string $dir): void
