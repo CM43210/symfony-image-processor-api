@@ -34,7 +34,7 @@ services:
     App\Core\Image\Application\Port\TempImageStorage:
         class: App\Infrastructure\Image\Storage\LocalTempImageStorage
         arguments:
-            $tmpUploadDir: '%kernel.project_dir%/var/tmp/uploads'
+            $tmpUploadDir: '%kernel.project_dir%/%env(TMP_UPLOAD_DIR)%'
 
     App\Core\Image\Application\Port\ImageProcessor:
         class: App\Infrastructure\Image\Processing\GdImageProcessor
@@ -52,14 +52,14 @@ services:
         class: App\Infrastructure\Image\Processing\RedisImageProcessingTracker
         arguments:
             $redis: '@Predis\Client'
-            $ttlSeconds: 86400
+            $ttlSeconds: '%env(int:REDIS_TTL_SECONDS)%'
 
     App\Core\Image\Application\Handler\ProcessImageHandler:
         arguments:
-            $storageDir: '%kernel.project_dir%/var/storage/images'
-            $archiveDir: '%kernel.project_dir%/var/storage/archives'
+            $storageDir: '%kernel.project_dir%/%env(IMAGE_STORAGE_DIR)%'
+            $archiveDir: '%kernel.project_dir%/%env(ARCHIVE_STORAGE_DIR)%'
 
     App\Core\Image\Application\Port\ArchiveStorage:
         class: App\Infrastructure\Storage\LocalArchiveStorage
         arguments:
-            $archiveDir: '%kernel.project_dir%/var/storage/archives'
+            $archiveDir: '%kernel.project_dir%/%env(ARCHIVE_STORAGE_DIR)%'
