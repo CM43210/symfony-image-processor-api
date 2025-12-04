@@ -44,6 +44,16 @@ services:
         arguments:
             $monolog: '@logger'
 
+    Predis\Client:
+        arguments:
+            - '%env(MESSENGER_TRANSPORT_DSN)%'
+
+    App\Core\Image\Application\Port\ImageProcessingTracker:
+        class: App\Infrastructure\Image\Processing\RedisImageProcessingTracker
+        arguments:
+            $redis: '@Predis\Client'
+            $ttlSeconds: 86400
+
     App\Core\Image\Application\Handler\ProcessImageHandler:
         arguments:
             $storageDir: '%kernel.project_dir%/var/storage/images'
