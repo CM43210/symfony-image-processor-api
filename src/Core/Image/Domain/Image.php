@@ -4,11 +4,21 @@ declare(strict_types=1);
 
 namespace App\Core\Image\Domain;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
+#[ORM\Table(name: 'image')]
 final class Image
 {
     private function __construct(
+        #[ORM\Id]
+        #[ORM\Column(type: 'image_id')]
         private ImageId $id,
+        
+        #[ORM\Embedded(class: ImageFile::class, columnPrefix: false)]
         private ImageFile $originalFile,
+        
+        #[ORM\Column(type: 'datetime_immutable', name: 'uploaded_at')]
         private \DateTimeImmutable $uploadedAt,
     ) {
     }

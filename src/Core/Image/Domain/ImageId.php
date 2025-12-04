@@ -23,6 +23,11 @@ final readonly class ImageId
         return new self(Uuid::fromString($id));
     }
 
+    public function toUuid(): Uuid
+    {
+        return $this->value;
+    }
+
     public function __toString(): string
     {
         return $this->value->toRfc4122();

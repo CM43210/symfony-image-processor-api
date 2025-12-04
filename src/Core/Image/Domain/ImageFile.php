@@ -4,13 +4,21 @@ declare(strict_types=1);
 
 namespace App\Core\Image\Domain;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Embeddable]
 final readonly class ImageFile
 {
     private const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
 
     private function __construct(
+        #[ORM\Column(type: 'string', length: 500, name: 'file_path')]
         private string $path,
+        
+        #[ORM\Column(type: 'string', length: 10, enumType: ImageFormat::class, name: 'file_format')]
         private ImageFormat $format,
+        
+        #[ORM\Column(type: 'integer', name: 'file_size_bytes')]
         private int $sizeInBytes,
     ) {
     }
