@@ -18,6 +18,11 @@ final readonly class ImageId
         return new self(Uuid::v7());
     }
 
+    public static function fromString(string $id): self
+    {
+        return new self(Uuid::fromString($id));
+    }
+
     public function __toString(): string
     {
         return $this->value->toRfc4122();

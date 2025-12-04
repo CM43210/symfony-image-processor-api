@@ -9,6 +9,7 @@ use App\Core\Image\Application\Port\ImageRepositoryInterface;
 use App\Core\Image\Application\Port\ImageStorageInterface;
 use App\Core\Image\Domain\Image;
 use App\Core\Image\Domain\ImageFile;
+use App\Core\Image\Domain\ImageId;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
@@ -22,13 +23,15 @@ final readonly class UploadImageHandler
 
     public function __invoke(UploadImageCommand $command): Image
     {
+        $imageId = ImageId::fromString($command->imageId);
+        
         $imageFile = ImageFile::create(
             $command->tmpPath,
             $command->format,
             $command->sizeInBytes
         );
 
-        $image = Image::upload($imageFile);
+        $image = Image::upload($imageId, $imageFile);
 
         $this->storage->store($imageFile, $command->originalName);
 

@@ -21,3 +21,7 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Core\Shared\Application\Port\AsyncCommandBus:
+        class: App\Infrastructure\Bus\MessengerAsyncCommandBus
+        arguments:
+            $bus: '@messenger.default_bus'

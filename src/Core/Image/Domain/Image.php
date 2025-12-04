@@ -13,10 +13,10 @@ final class Image
     ) {
     }
 
-    public static function upload(ImageFile $file): self
+    public static function upload(ImageId $id, ImageFile $file): self
     {
         return new self(
-            ImageId::generate(),
+            $id,
             $file,
             new \DateTimeImmutable(),
         );

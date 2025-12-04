@@ -9,6 +9,7 @@ use App\Core\Image\Domain\ImageFormat;
 final readonly class UploadImageCommand
 {
     public function __construct(
+        public string $imageId,
         public string $tmpPath,
         public string $originalName,
         public ImageFormat $format,
