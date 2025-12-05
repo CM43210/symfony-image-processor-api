@@ -5,7 +5,8 @@ PHPSVC ?= php
 
 composer-install: 
 	$(DC) up -d --build $(PHPSVC)
-	$(DC) exec -e COMPOSER_ALLOW_SUPERUSER=1 $(PHPSVC) composer install --no-interaction --prefer-dist
+	$(DC) exec -e COMPOSER_ALLOW_SUPERUSER=1 -e COMPOSER_MEMORY_LIMIT=-1 $(PHPSVC) composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+	$(DC) exec -e COMPOSER_ALLOW_SUPERUSER=1 -e COMPOSER_MEMORY_LIMIT=-1 $(PHPSVC) composer install --no-interaction --prefer-dist --optimize-autoloader
 
 composer:
 	$(DC) up -d --build $(PHPSVC)
