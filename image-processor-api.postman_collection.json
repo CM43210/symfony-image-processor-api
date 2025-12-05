@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "341ca11a-dd03-4b35-83f3-cf58d9787e70",
+		"name": "image-processor-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20658702",
+		"_collection_link": ""
+	},
+	"item": [
+		{
+			"name": "image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/images",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"images"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "image status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/images/019aebf7-fd67-7a75-a88c-5a72838dc584/status",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"images",
+						"019aebf7-fd67-7a75-a88c-5a72838dc584",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "image download",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/images/019aebb7-f1c2-7f33-87c3-c6f113a84b57/download",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"images",
+						"019aebb7-f1c2-7f33-87c3-c6f113a84b57",
+						"download"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}
