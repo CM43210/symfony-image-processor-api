@@ -1,6 +1,6 @@
 services:
   php:
-    entrypoint: ["sh", "-lc", "mkdir -p /var/www/var/cache /var/www/var/log && chown -R www-data:www-data /var/www/var && exec docker-php-entrypoint php-fpm"]
+    entrypoint: ["sh", "-lc", "composer install --no-interaction --prefer-dist && mkdir -p /var/www/var/cache /var/www/var/log && chown -R www-data:www-data /var/www/var && exec docker-php-entrypoint php-fpm"]
     environment:
       APP_ENV: dev
       APP_DEBUG: 1
@@ -20,7 +20,7 @@ services:
       - ./docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/zz-xdebug.ini:ro
 
   worker:
-    entrypoint: ["sh", "-lc", "mkdir -p /var/www/var/cache /var/www/var/log && chown -R www-data:www-data /var/www/var && exec php bin/console messenger:consume async -vv"]
+    entrypoint: ["sh", "-lc", "composer install --no-interaction --prefer-dist && mkdir -p /var/www/var/cache /var/www/var/log && chown -R www-data:www-data /var/www/var && exec php bin/console messenger:consume async -vv"]
     build:
       context: .
       dockerfile: docker/php/Dockerfile
