@@ -7,6 +7,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    image.storage_dir: '%kernel.project_dir%/%env(IMAGE_STORAGE_DIR)%'
+    archive.storage_dir: '%kernel.project_dir%/%env(ARCHIVE_STORAGE_DIR)%'
 
 services:
     # default configuration for services in *this* file
@@ -56,10 +58,10 @@ services:
 
     App\Core\Image\Application\Handler\ProcessImageHandler:
         arguments:
-            $storageDir: '%kernel.project_dir%/%env(IMAGE_STORAGE_DIR)%'
-            $archiveDir: '%kernel.project_dir%/%env(ARCHIVE_STORAGE_DIR)%'
+            $storageDir: '%image.storage_dir%'
+            $archiveDir: '%archive.storage_dir%'
 
     App\Core\Image\Application\Port\ArchiveStorage:
         class: App\Infrastructure\Storage\LocalArchiveStorage
         arguments:
-            $archiveDir: '%kernel.project_dir%/%env(ARCHIVE_STORAGE_DIR)%'
+            $archiveDir: '%archive.storage_dir%'
