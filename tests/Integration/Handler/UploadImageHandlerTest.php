@@ -12,12 +12,11 @@ use App\Core\Image\Application\Port\ImageStorage;
 use App\Core\Image\Domain\ImageFormat;
 use App\Core\Image\Domain\ImageId;
 use App\Tests\Doubles\SpyAsyncCommandBus;
+use App\Tests\TestImageData;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 final class UploadImageHandlerTest extends KernelTestCase
 {
-    private const MINIMAL_VALID_JPEG = '/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAA8A/9k=';
-
     private ImageRepository $repository;
     private ImageStorage $storage;
     private SpyAsyncCommandBus $commandBus;
@@ -115,7 +114,7 @@ final class UploadImageHandlerTest extends KernelTestCase
     {
         $tmpPath = sys_get_temp_dir() . '/test_image_' . uniqid() . '.jpg';
         
-        $imageData = base64_decode(self::MINIMAL_VALID_JPEG);
+        $imageData = base64_decode(TestImageData::MINIMAL_VALID_JPEG);
         file_put_contents($tmpPath, $imageData);
         
         return $tmpPath;

@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
+use App\Tests\TestImageData;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 final class ImageUploadControllerTest extends WebTestCase
 {
-    private const MINIMAL_VALID_JPEG = '/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAA8A/9k=';
-
     public function test_uploads_image_successfully(): void
     {
         $client = static::createClient();
@@ -81,7 +80,7 @@ final class ImageUploadControllerTest extends WebTestCase
     private function createUploadedFile(string $filename, string $mimeType): UploadedFile
     {
         $tmpPath = sys_get_temp_dir() . '/' . uniqid() . '_' . $filename;
-        $imageData = base64_decode(self::MINIMAL_VALID_JPEG);
+        $imageData = base64_decode(TestImageData::MINIMAL_VALID_JPEG);
         file_put_contents($tmpPath, $imageData);
 
         return new UploadedFile(

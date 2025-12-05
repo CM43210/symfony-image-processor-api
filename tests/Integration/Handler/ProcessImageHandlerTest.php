@@ -12,12 +12,11 @@ use App\Core\Image\Domain\Image;
 use App\Core\Image\Domain\ImageFile;
 use App\Core\Image\Domain\ImageFormat;
 use App\Core\Image\Domain\ImageId;
+use App\Tests\TestImageData;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 final class ProcessImageHandlerTest extends KernelTestCase
 {
-    private const MINIMAL_VALID_JPEG = '/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAA8A/9k=';
-
     private ProcessImageHandler $handler;
     private ImageRepository $repository;
     private ImageProcessingTracker $tracker;
@@ -125,7 +124,7 @@ final class ProcessImageHandlerTest extends KernelTestCase
         $filename = (string) $imageId . '.jpg';
         $path = $this->storageDir . '/' . $filename;
         
-        $imageData = base64_decode(self::MINIMAL_VALID_JPEG);
+        $imageData = base64_decode(TestImageData::MINIMAL_VALID_JPEG);
         file_put_contents($path, $imageData);
         
         return $path;
